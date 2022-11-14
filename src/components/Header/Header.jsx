@@ -22,7 +22,7 @@ function Header() {
         </Link> */}
         <div>
           <span className={styles.firstEver}>Впервые здесь?</span>
-          <Link to="/createprofile">
+          <Link to="/registration">
             <button className={styles.firstEverRegistartion}>
               Регистрация
             </button>

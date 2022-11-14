@@ -1,0 +1,19 @@
+.input {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #8b5d9a;
+  padding: 24px 0 26px 30px;
+  background: #42204e;
+  border-radius: 500px;
+}
+
+.input::placeholder {
+  color: #8b5d9a;
+}
+
+.margin20px {
+  margin-bottom: 20px;
+}

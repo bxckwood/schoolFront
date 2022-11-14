@@ -10,7 +10,9 @@ function Layout() {
       <div className={styles.sticky}>
         <Header />
       </div>
-      <Outlet />
+      <div className={styles.outlet}>
+        <Outlet />
+      </div>
     </div>
   );
 }
