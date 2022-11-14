@@ -1,0 +1,118 @@
+@import "../../scss/variables";
+
+.header {
+  padding: 0 360px;
+  height: 120px;
+  background-color: $backgroundHeader;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.headerInner {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerLogo {
+  display: flex;
+  align-items: center;
+}
+
+.headerLogo:hover .headerLogoText {
+  color: $orange;
+}
+
+.headerLogo:hover .headerLogoPhoto * {
+  fill: $orange;
+}
+
+.headerLogoPhotoDiv {
+  height: 60px;
+  width: 60px;
+}
+
+.headerLogoPhoto * {
+  fill: white;
+  transition: $transition;
+}
+
+.headerLogoText {
+  margin-left: 20px;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 150%;
+  text-align: center;
+  color: #ffffff;
+  transition: $transition;
+}
+
+.headerProfile {
+  display: flex;
+  align-items: center;
+}
+
+.headerProfile:hover .headerProfilePhoto * {
+  fill: $orange;
+}
+
+.headerProfile:hover .headerProfileText {
+  color: $orange;
+}
+
+.headerProfilePhoto {
+  height: 40px;
+  width: 40px;
+  margin-right: 15px;
+}
+
+.headerProfilePhoto * {
+  fill: white;
+  transition: $transition;
+}
+
+.headerProfileText {
+  transition: $transition;
+  color: white;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #ffffff;
+}
+
+.firstEver {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: center;
+  color: #ffffff;
+  margin-right: 20px;
+}
+
+.firstEverRegistartion {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: center;
+  color: #ffffff;
+  background: transparent;
+  padding: 11px 36px;
+  border: 2px solid;
+  border-radius: 500px;
+  transition: $transition;
+}
+
+.firstEverRegistartion:hover {
+  color: $orange;
+  border-color: $orange;
+}
