@@ -1,0 +1,21 @@
+.loginPage {
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+}
+
+.formTitle {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 150%;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 80px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}

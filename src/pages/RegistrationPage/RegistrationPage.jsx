@@ -15,7 +15,7 @@ function RegistrationPage() {
     watch,
     formState: { errors },
   } = useForm();
-
+  
   const [isCreactedAccount, setIsCreatedAccount] = useState(false);
   const [attempt, setAttempt] = useState(false);
 

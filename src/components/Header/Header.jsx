@@ -14,7 +14,7 @@ function Header() {
           <div className={styles.headerLogoPhotoDiv}>
             <Logo className={styles.headerLogoPhoto} />
           </div>
-          <span className={styles.headerLogoText}>Vmeste.com</span>
+          <span className={styles.headerLogoText}>Together.com</span>
         </Link>
         {/* <Link to="/profile" className={styles.headerProfile}>
           <Profile className={styles.headerProfilePhoto} />
