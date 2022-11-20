@@ -6,6 +6,10 @@ import { useForm } from "react-hook-form";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 
+import user from "../RegistrationPage/user.svg";
+import email from "../RegistrationPage/email.svg";
+import password from "../RegistrationPage/password.svg";
+
 import styles from "../RegistrationPage/RegistrationPage.module.scss";
 
 function RegistrationPage() {
@@ -15,7 +19,7 @@ function RegistrationPage() {
     watch,
     formState: { errors },
   } = useForm();
-  
+
   const [isCreactedAccount, setIsCreatedAccount] = useState(false);
   const [attempt, setAttempt] = useState(false);
 
@@ -28,7 +32,7 @@ function RegistrationPage() {
     setAttempt(true);
     if (request.status === 200) {
       setIsCreatedAccount(true);
-      window.location.assign("http://localhost:3000");
+      window.location.assign("http://localhost:3000/authorization");
     }
     return request;
   };
@@ -36,6 +40,9 @@ function RegistrationPage() {
   return (
     <div className={styles.registrationPage}>
       <h1 className={styles.formTitle}>Создай новый аккаунт</h1>
+      <span className={styles.formSubtitle}>
+        Присоединяйся к нашему сообществу!
+      </span>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <Input
           placeholder={"Ваш ник"}
@@ -44,6 +51,11 @@ function RegistrationPage() {
           mg={"margin20px"}
           required={true}
           type={"text"}
+          url={user}
+          top={"27px"}
+          maxLength={15}
+          minLength={5}
+          errors={errors}
         />
         <Input
           placeholder={"Введите электронную почту"}
@@ -52,6 +64,11 @@ function RegistrationPage() {
           mg={"margin20px"}
           required={true}
           type={"email"}
+          url={email}
+          top={"29px"}
+          maxLength={25}
+          minLength={10}
+          errors={errors}
         />
         <Input
           placeholder={"Введите пароль"}
@@ -60,8 +77,17 @@ function RegistrationPage() {
           mg={"margin20px"}
           required={true}
           type={"password"}
+          url={password}
+          top={"27px"}
+          maxLength={18}
+          minLength={6}
+          errors={errors}
         />
-        <Button text={"Создать аккаунт"} onClick={() => onSubmit()} />
+        <Button
+          text={"Создать аккаунт"}
+          errors={errors}
+          onClick={() => onSubmit()}
+        />
         {attempt ? (isCreactedAccount ? "Аккаунт создан" : "Ошибка") : null}
       </form>
     </div>

@@ -6,6 +6,9 @@ import { useForm } from "react-hook-form";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 
+import password from "../RegistrationPage/password.svg";
+import user from "../RegistrationPage/user.svg";
+
 import styles from "../LoginPage/LoginPage.module.scss";
 
 export default function LoginPage() {
@@ -25,16 +28,14 @@ export default function LoginPage() {
 
     if (request.status === 200) {
       localStorage.setItem("token", request.data.token);
-      // window.location.assign("http://localhost:3000");
     }
 
-    console.log(request.data.token);
     return request.data.token;
   };
 
   return (
     <div className={styles.loginPage}>
-      <h1 className={styles.formTitle}>Войди в аккаунт</h1>
+      <h1 className={styles.formTitle}>Войти в аккаунт</h1>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <Input
           placeholder={"Ваш ник"}
@@ -43,6 +44,11 @@ export default function LoginPage() {
           mg={"margin20px"}
           required={true}
           type={"text"}
+          url={user}
+          top={"27px"}
+          maxLength={15}
+          minLength={5}
+          errors={errors}
         />
         <Input
           placeholder={"Введите пароль"}
@@ -51,9 +57,15 @@ export default function LoginPage() {
           mg={"margin20px"}
           required={true}
           type={"password"}
+          url={password}
+          top={"27px"}
+          maxLength={18}
+          minLength={6}
+          errors={errors}
         />
         <Button
           text={"Войти в аккаунт"}
+          errors={errors}
           onClick={() => {
             onSubmit();
           }}

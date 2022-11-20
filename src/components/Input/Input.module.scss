@@ -1,3 +1,12 @@
+@import "../../scss/variables";
+
+.div {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
 .input {
   font-family: "Rubik";
   font-style: normal;
@@ -5,15 +14,38 @@
   font-size: 16px;
   line-height: 150%;
   color: #8b5d9a;
-  padding: 24px 0 26px 30px;
+  padding: 24px 0 26px 73px;
   background: #42204e;
   border-radius: 500px;
+  transition: $transition;
+  width: 100%;
 }
 
 .input::placeholder {
   color: #8b5d9a;
+  transition: $transition;
 }
 
 .margin20px {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+}
+
+.input:hover,
+.input:focus {
+  color: #c17bd8;
+}
+
+.input:hover::placeholder,
+.input:focus::placeholder {
+  color: #c17bd8;
+}
+
+.img {
+  position: absolute;
+  left: 30px;
+}
+
+.error {
+  margin: 0 auto;
+  margin-bottom: 15px;
 }
