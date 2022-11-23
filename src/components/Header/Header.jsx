@@ -7,6 +7,9 @@ import { ReactComponent as Profile } from "./user-svgrepo-com.svg";
 import styles from "../Header/Header.module.scss";
 
 function Header() {
+  const token = localStorage.getItem("token");
+  console.log(token);
+
   return (
     <header className={styles.header}>
       <div className={styles.headerInner}>
@@ -16,18 +19,21 @@ function Header() {
           </div>
           <span className={styles.headerLogoText}>Together.com</span>
         </Link>
-        {/* <Link to="/profile" className={styles.headerProfile}>
-          <Profile className={styles.headerProfilePhoto} />
-          <span className={styles.headerProfileText}>Иван Иванов</span>
-        </Link> */}
-        <div>
-          <span className={styles.firstEver}>Впервые здесь?</span>
-          <Link to="/registration">
-            <button className={styles.firstEverRegistartion}>
-              Регистрация
-            </button>
+        {token ? (
+          <Link to="/profile" className={styles.headerProfile}>
+            <Profile className={styles.headerProfilePhoto} />
+            <span className={styles.headerProfileText}>Иван Иванов</span>
           </Link>
-        </div>
+        ) : (
+          <div>
+            <span className={styles.firstEver}>Впервые здесь?</span>
+            <Link to="/registration">
+              <button className={styles.firstEverRegistartion}>
+                Регистрация
+              </button>
+            </Link>
+          </div>
+        )}
       </div>
     </header>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 import axios from "axios";
 
@@ -10,6 +10,7 @@ import password from "../RegistrationPage/password.svg";
 import user from "../RegistrationPage/user.svg";
 
 import styles from "../LoginPage/LoginPage.module.scss";
+import { Link } from "react-router-dom";
 
 export default function LoginPage() {
   const {
@@ -18,9 +19,14 @@ export default function LoginPage() {
     watch,
     formState: { errors },
   } = useForm();
+  
+  const [error, setError] = useState("")
+  const [attempt, setAttempt] = useState(false);
+
 
   const onSubmit = async (data) => {
     console.log(data);
+    setAttempt(true);
     const request = await axios.post(
       "http://localhost:8080/api/user/auth",
       data
@@ -28,6 +34,8 @@ export default function LoginPage() {
 
     if (request.status === 200) {
       localStorage.setItem("token", request.data.token);
+    } else if (request.status === 201) {
+      setError(request.data)
     }
 
     return request.data.token;
@@ -70,7 +78,10 @@ export default function LoginPage() {
             onSubmit();
           }}
         />
-        {/* {attempt ? (isCreactedAccount ? "Аккаунт создан" : "Ошибка") : null} */}
+        {attempt ? (!error ? "Вы вошли в аккаунт" : <div className={styles.error}>{error}</div>) : null}
+
+        <Link to="/registration" className={styles.linkTo}>Ещё нет аккаунта?</Link>
+        
       </form>
     </div>
   );

@@ -11,6 +11,7 @@ import email from "../RegistrationPage/email.svg";
 import password from "../RegistrationPage/password.svg";
 
 import styles from "../RegistrationPage/RegistrationPage.module.scss";
+import { Link } from "react-router-dom";
 
 function RegistrationPage() {
   const {
@@ -22,17 +23,20 @@ function RegistrationPage() {
 
   const [isCreactedAccount, setIsCreatedAccount] = useState(false);
   const [attempt, setAttempt] = useState(false);
+  const [error, setError] = useState("")
 
   const onSubmit = async (data) => {
+
+    setAttempt(true);
     const request = await axios.post(
       "http://localhost:8080/api/user/create",
       data
     );
-
-    setAttempt(true);
     if (request.status === 200) {
       setIsCreatedAccount(true);
       window.location.assign("http://localhost:3000/authorization");
+    } else if (request.status === 201) {
+      setError(request.data)
     }
     return request;
   };
@@ -88,7 +92,9 @@ function RegistrationPage() {
           errors={errors}
           onClick={() => onSubmit()}
         />
-        {attempt ? (isCreactedAccount ? "Аккаунт создан" : "Ошибка") : null}
+        
+        {attempt ? (isCreactedAccount ? "Аккаунт создан" : <div className={styles.error}>{error}</div>) : null}
+        <Link className={styles.linkTo} to="/authorization">Уже есть аккаунт?</Link>
       </form>
     </div>
   );
