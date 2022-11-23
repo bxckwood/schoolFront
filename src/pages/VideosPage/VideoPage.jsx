@@ -6,6 +6,7 @@ export default function VideoPage() {
 
   const func123 = () => {
     playerRef.current.seekTo(400, "seconds");
+    console.log(playerRef.current.getCurrentTime())
   };
 
   return (

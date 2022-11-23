@@ -8,6 +8,7 @@ import styles from "../Header/Header.module.scss";
 
 function Header() {
   const token = localStorage.getItem("token");
+  const name = localStorage.getItem("name");
   console.log(token);
 
   return (
@@ -22,7 +23,7 @@ function Header() {
         {token ? (
           <Link to="/profile" className={styles.headerProfile}>
             <Profile className={styles.headerProfilePhoto} />
-            <span className={styles.headerProfileText}>Иван Иванов</span>
+            <span className={styles.headerProfileText}>{name}</span>
           </Link>
         ) : (
           <div>

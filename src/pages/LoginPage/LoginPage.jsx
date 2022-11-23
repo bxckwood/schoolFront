@@ -34,6 +34,9 @@ export default function LoginPage() {
 
     if (request.status === 200) {
       localStorage.setItem("token", request.data.token);
+      localStorage.setItem("name", request.data.name);
+      setError("")
+      window.location.reload()
     } else if (request.status === 201) {
       setError(request.data)
     }
@@ -78,7 +81,7 @@ export default function LoginPage() {
             onSubmit();
           }}
         />
-        {attempt ? (!error ? "Вы вошли в аккаунт" : <div className={styles.error}>{error}</div>) : null}
+        {attempt ? (!error ? <div className={styles.error}>Вы вошли в аккаунт</div>: <div className={styles.error}>{error}</div>) : null}
 
         <Link to="/registration" className={styles.linkTo}>Ещё нет аккаунта?</Link>
         
