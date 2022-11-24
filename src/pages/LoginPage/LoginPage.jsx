@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 import axios from "axios";
 
@@ -19,10 +19,9 @@ export default function LoginPage() {
     watch,
     formState: { errors },
   } = useForm();
-  
-  const [error, setError] = useState("")
-  const [attempt, setAttempt] = useState(false);
 
+  const [error, setError] = useState("");
+  const [attempt, setAttempt] = useState(false);
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -35,10 +34,10 @@ export default function LoginPage() {
     if (request.status === 200) {
       localStorage.setItem("token", request.data.token);
       localStorage.setItem("name", request.data.name);
-      setError("")
-      window.location.reload()
+      setError("");
+      window.location.reload();
     } else if (request.status === 201) {
-      setError(request.data)
+      setError(request.data);
     }
 
     return request.data.token;
@@ -49,7 +48,7 @@ export default function LoginPage() {
       <h1 className={styles.formTitle}>Войти в аккаунт</h1>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <Input
-          placeholder={"Ваш ник"}
+          placeholder={"Ссылка на youtube"}
           register={register}
           inputName={"name"}
           mg={"margin20px"}
@@ -81,10 +80,17 @@ export default function LoginPage() {
             onSubmit();
           }}
         />
-        {attempt ? (!error ? <div className={styles.error}>Вы вошли в аккаунт</div>: <div className={styles.error}>{error}</div>) : null}
+        {attempt ? (
+          !error ? (
+            <div className={styles.error}>Вы вошли в аккаунт</div>
+          ) : (
+            <div className={styles.error}>{error}</div>
+          )
+        ) : null}
 
-        <Link to="/registration" className={styles.linkTo}>Ещё нет аккаунта?</Link>
-        
+        <Link to="/registration" className={styles.linkTo}>
+          Ещё нет аккаунта?
+        </Link>
       </form>
     </div>
   );
