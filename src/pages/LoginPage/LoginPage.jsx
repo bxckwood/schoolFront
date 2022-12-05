@@ -48,7 +48,7 @@ export default function LoginPage() {
       <h1 className={styles.formTitle}>Войти в аккаунт</h1>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <Input
-          placeholder={"Ссылка на youtube"}
+          placeholder={"Ваш ник"}
           register={register}
           inputName={"name"}
           mg={"margin20px"}
