@@ -9,12 +9,19 @@
   align-items: center;
 }
 
-.groupPageRow {
-  margin-right: 50px;
-}
-
 .groupPageRow:last-child {
   margin-right: 0;
+}
+
+.groupPageRow2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.groupPageSubTitle2 {
+  margin-bottom: 30px;
 }
 
 .groupPageTitle {

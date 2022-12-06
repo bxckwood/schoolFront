@@ -10,6 +10,8 @@ function GroupPage(props) {
   const [inputState, setInputState] = useState("");
   const [coUser, setCoUser] = useState(false);
   const [leader, setLeader] = useState(false);
+  const [coUserId, setCoUserId] = useState(0);
+  const [coUserNickname, setCoUserNickname] = useState(0);
 
   const getAllInvitations = async () => {
     const jwtToken = localStorage.getItem("token");
@@ -54,6 +56,7 @@ function GroupPage(props) {
     );
 
     console.log(acceptInvitationRequest);
+    window.location.reload();
   };
 
   const declineInvitation = async (groupId) => {
@@ -68,6 +71,7 @@ function GroupPage(props) {
     );
 
     console.log(declineInvitationRequest);
+    window.location.reload();
   };
 
   const createGroup = async () => {
@@ -81,6 +85,7 @@ function GroupPage(props) {
     );
 
     console.log(createInvitationRequest);
+    window.location.reload();
   };
 
   const deleteGroup = async () => {
@@ -94,6 +99,36 @@ function GroupPage(props) {
     );
 
     console.log(deleteInvitationRequest);
+    window.location.reload();
+  };
+
+  const leaveGroup = async () => {
+    const jwtToken = localStorage.getItem("token");
+
+    const leaveInvitationRequest = await axios.post(
+      "http://localhost:8080/api/group/leave",
+      {
+        jwtToken: jwtToken,
+      }
+    );
+
+    console.log(leaveInvitationRequest);
+    window.location.reload();
+  };
+
+  const kickPlayerFromGroup = async (coUserNickname) => {
+    const jwtToken = localStorage.getItem("token");
+
+    const kickPlayerFromGroupRequest = await axios.post(
+      "http://localhost:8080/api/group/kick",
+      {
+        jwtToken: jwtToken,
+        name: coUserNickname,
+      }
+    );
+
+    console.log(kickPlayerFromGroupRequest);
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -110,6 +145,8 @@ function GroupPage(props) {
 
         setLeader(aboutGroupRequest.data.leader);
         setCoUser(aboutGroupRequest.data.coUser);
+        setCoUserId(aboutGroupRequest.data.coUserId);
+        setCoUserNickname(aboutGroupRequest.data.coUserNickname);
 
         if (
           aboutGroupRequest.data.leader === false &&
@@ -144,22 +181,40 @@ function GroupPage(props) {
                 />
               </div>
             ) : null}
+            {coUser ? (
+              <div className={styles.groupPageRowTable}>
+                <ButtonNoSubmit
+                  clickFunction={() => leaveGroup()}
+                  text={"Покинуть группу"}
+                />
+              </div>
+            ) : null}
           </div>
           {leader ? (
-            <div className={styles.groupPageRow}>
-              <span className={styles.groupPageTitle}>
-                Пригласить друга в группу
-              </span>
-              <InputNoSubmit
-                onChangeFunc={handleInput}
-                value={inputState}
-                bottom={"20px"}
-                placeholder={"Введите ник друга"}
-              />
-              <ButtonNoSubmit
-                text={"Отправить запрос"}
-                clickFunction={() => sendInvitation(inputState)}
-              />
+            <div className={styles.groupPageRowTable}>
+              <div className={styles.groupPageRow}>
+                <span className={styles.groupPageTitle}>
+                  Пригласить друга в группу
+                </span>
+                <InputNoSubmit
+                  onChangeFunc={handleInput}
+                  value={inputState}
+                  bottom={"20px"}
+                  placeholder={"Введите ник друга"}
+                />
+                <ButtonNoSubmit
+                  text={"Отправить запрос"}
+                  clickFunction={() => sendInvitation(inputState)}
+                />
+              </div>
+              {coUserId > 0 ? (
+                <div className={styles.groupPageRow2}>
+                  <ButtonNoSubmit
+                    text={`Удалить из группы ${coUserNickname}`}
+                    clickFunction={() => kickPlayerFromGroup(coUserNickname)}
+                  />
+                </div>
+              ) : null}
             </div>
           ) : null}
           {!leader && !coUser ? (
@@ -185,7 +240,7 @@ function GroupPage(props) {
             </div>
           ) : (
             <span className={styles.groupPageSubTitle}>
-              Вы участник группы или лидер
+              Вы {leader ? "лидер группы" : "участник группы"}
             </span>
           )}
         </div>
