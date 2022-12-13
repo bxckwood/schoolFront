@@ -18,7 +18,10 @@ export const InputYoutubePage = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    navigate(`/videos/${data.link}`);
+    // https://www.youtube.com/watch?v=si4E1LT6ibY
+    let { link } = data;
+    link = link.replace("https://www.youtube.com/watch?v=", "");
+    navigate(`/videos/${link}`);
   };
 
   return (

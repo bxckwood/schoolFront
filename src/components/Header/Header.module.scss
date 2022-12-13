@@ -116,3 +116,68 @@
   color: $orange;
   border-color: $orange;
 }
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.burger {
+  height: 30px;
+  width: 30px;
+  margin-left: 30px;
+  transition: $transition;
+}
+
+.burger * {
+  fill: white;
+  transition: $transition;
+}
+
+.burger2 {
+  height: 30px;
+  width: 30px;
+  margin-left: 30px;
+  position: absolute;
+  right: 60px;
+  top: 43px;
+  transition: $transition;
+}
+
+.burger2 * {
+  fill: white;
+  transition: $transition;
+}
+
+.burgerHover:hover .burger2 * {
+  fill: $orange;
+}
+
+.burgerHover:hover .burger * {
+  fill: $orange;
+}
+
+.burgerMenu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  background-color: darken($color: $backgroundHeader, $amount: 8%);
+  width: 30%;
+  padding: 50px;
+}
+
+.burgerLinks {
+  color: white;
+  font-size: 20px;
+  margin-bottom: 15px;
+  transition: $transition;
+}
+
+.burgerLinks:hover {
+  color: $orange;
+}
+
+.burgerInner {
+  display: flex;
+  flex-direction: column;
+}
